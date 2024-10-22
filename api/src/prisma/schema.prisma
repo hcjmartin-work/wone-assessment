@@ -18,13 +18,22 @@ model FormVersion {
   content Json
   form    Form      @relation(fields: [formId], references: [id])
   formId  Int
+  userFormAttempts  UserFormAttempts[]
 }
 
 model Form {
   id      Int       @id @default(autoincrement())
-  FormVersions      FormVersion[]
-  owner User       @relation(fields: [ownerId], references: [id])
+  formVersions      FormVersion[]
+  owner   User      @relation(fields: [ownerId], references: [id])
   ownerId Int
+}
+
+model UserFormAttempts {
+  id              Int           @id @default(autoincrement())
+  formVersion     FormVersion   @relation(fields: [formVersionId], references: [id])
+  formVersionId   Int
+  completed       Boolean       @default(false)
+  content         Json?
 }
 
 model User {

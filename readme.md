@@ -26,6 +26,9 @@ docker compose up
 Update the prisma schema and run 
 ```npx prisma migrate dev --name init```
 
+## Testing
+Run ```npm run test```
+
 # Notes
 
 ## 'Productionising'
