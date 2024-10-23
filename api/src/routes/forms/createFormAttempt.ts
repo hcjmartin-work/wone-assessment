@@ -1,6 +1,12 @@
 import { PostFormAttemptRequestType } from "../../models/postFormAttempt";
 import prisma from "../../services/prisma";
 
+/**
+ * Creates or updates a user form attempt.
+ * 
+ * Updates existing if attempt id is provided
+ * Otherwise, creates new
+ */
 export async function createFormAttempt(data: PostFormAttemptRequestType) {
   console.log(`Create Form Attempt request`);
 
@@ -8,7 +14,7 @@ export async function createFormAttempt(data: PostFormAttemptRequestType) {
 
   var formAttemptId = data.formAttemptId;
 
-  // If existing attempt ID is provided; update the existing attempt
+  // If existing attempt ID is provided update the existing attempt
   // Otherwise create new
   if (formAttemptId) {
     try {
@@ -39,5 +45,5 @@ export async function createFormAttempt(data: PostFormAttemptRequestType) {
     formAttemptId = formAttempt.id;
   }
 
-  return formAttemptId;
+  return { "formAttemptId": formAttemptId };
 }

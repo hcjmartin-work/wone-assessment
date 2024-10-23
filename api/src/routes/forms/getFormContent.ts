@@ -1,6 +1,13 @@
 import { GetFormContentRequestType } from "../../models/getFormContent";
 import prisma from "../../services/prisma";
 
+/**
+ * Retrieves the content of a specific form version.
+ * 
+ * If a form version ID is provided, the function retrieves the content for that specific version.
+ * If only a form ID is provided, the function fetches the current version of the form using the form's
+ * `currentFormVersionId` field. If neither ID is provided, an error is thrown.
+ */
 export async function getFormContent(data: GetFormContentRequestType) {
   console.log(`Get Form request`);
 

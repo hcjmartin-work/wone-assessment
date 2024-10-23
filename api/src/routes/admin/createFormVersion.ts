@@ -2,6 +2,12 @@
 import { PostFormVersionRequestType } from "../../models/postFormVersionRequest";
 import prisma from "../../services/prisma";
 
+/**
+ * Creates a new form version
+ * If no Form id is provided - a new form will be created
+ * 
+ * Updates an existing formVersion is prevented - as user attempts require an immutable reference
+ */
 export async function createFormVersion(data: PostFormVersionRequestType) {
   console.log(`Form Create request from ${data.userEmail}`);
 
@@ -30,6 +36,7 @@ export async function createFormVersion(data: PostFormVersionRequestType) {
     formId = newForm.id;
   }
 
+  // TODO: Remove formVersionId request field - user should not be able to modify
   // If a formVersionId is provided, update existing
   var formVersionId = data.formVersionId;
 
@@ -47,7 +54,6 @@ export async function createFormVersion(data: PostFormVersionRequestType) {
 
     formVersionId = newFormVersion.id;
 
-    // TODO: This could be simplified to one query
     const updatedForm = await prisma.form.update({
       where: { id: formId },
       data: {
@@ -56,5 +62,5 @@ export async function createFormVersion(data: PostFormVersionRequestType) {
     });
   }
 
-  return formVersionId;
+  return { "formVersionId": formVersionId, "formId": formId };
 }
