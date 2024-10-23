@@ -26,6 +26,11 @@ docker compose up
 Update the prisma schema and run 
 ```npx prisma migrate dev --name init```
 
+### Schema Changes
+As the schema changes, you will need to run ```npx prisma generate``` to keep the prisma client up to date.
+
+This additional dependency should be generated whenever prisma client is installed - so it should not require manual execution on new setup.
+
 ## Testing
 Run ```npm run test```
 
