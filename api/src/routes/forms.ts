@@ -7,13 +7,13 @@ import { postFormAttemptRequest, PostFormAttemptRequestType } from '../models/po
 import { createFormAttempt } from './forms/createFormAttempt';
 
 const formRoutes: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
+  fastify.get("/attempt", testHandler); // TODO: Get a Form attempt by id
+
   fastify.get<{ Querystring: GetFormContentRequestType }>(
     "/", 
     { schema: { querystring: getFormContentRequest } }, 
     (request) => getFormContent(request.query)
   ); // Get a form version
-
-  fastify.get("/attempt", testHandler); // TODO: Get a Form attempt by id
 
   fastify.post<{ Body: PostFormAttemptRequestType }>(
     "/attempt", 
