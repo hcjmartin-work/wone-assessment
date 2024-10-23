@@ -6,7 +6,7 @@ Prisma ORM
 
 See ```/api/prisma/schema.prisma``` for db structure
 
-See ```/assessment/notes.md``` for decisions + architecture
+See ```/assessment/notes.md``` for my personal notes on discussion + architecture
 
 
 # Running the project locally
@@ -58,8 +58,3 @@ This additional dependency should be generated whenever prisma client is install
 
 ## Testing
 Run ```npm run test```
-
-# Notes
-
-## 'Productionising'
-- Use your favourite IaC to manage live dev and prod environments (eg. pulumi)
