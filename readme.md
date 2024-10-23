@@ -1,20 +1,45 @@
+# Solution Description
+PostgreSQL
+Typescript
+Fastify
+Prisma ORM
+
+See ```/api/prisma/schema.prisma``` for db structure
+
+See ```/assessment/notes.md``` for decisions + architecture
+
+
 # Running the project locally
-You will need:
-Docker, node
+You will need Docker
 
-1. Ensure you are using node 20. If you're using fnm: 
-```
-fnm use 20
-```
-
-2. Start the local postgres database:
+1. Start the local postgres database from the project root folder
 ```
 docker compose up
 ```
 
-> **_NOTE_:** Currently docker-compose contains only the postgres database
+2. Ensure you are using node 20. If you're using fnm: 
+```
+fnm use 20
+```
 
-  
+3. Switch to the api folder and install the local packages
+```
+cd api
+npm install
+```
+
+4. Run the prisma db migrations and seed
+Should be:
+```
+npx prisma migrate reset
+```
+
+5. Build and run the api
+```
+npm run build
+npm run start
+```
+
 
 # Development
 
