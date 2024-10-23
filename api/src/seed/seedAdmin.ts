@@ -16,7 +16,7 @@ async function main() {
     },
   })
   // Seed the first Form
-  const initForm = await prisma.form.create({ 
+  var initForm = await prisma.form.create({ 
     data: {
       ownerId: admin.id,
     },
@@ -28,6 +28,14 @@ async function main() {
       content: seedJson
     }
   })
+  // Set the current version of the form to the newly created version
+  initForm = await prisma.form.update({
+    where: { id: initForm.id },
+    data: {
+      currentFormVersionId: initFormVersion.id
+    }
+  })
+
   console.log({ admin, initForm, initFormVersion })
 }
 main()

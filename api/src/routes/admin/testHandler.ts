@@ -1,5 +1,5 @@
 export async function testHandler(request: any, reply: any) {
-    console.log("Test");
+    console.error("Not Implemented");
     
     return "Test Complete";
   };

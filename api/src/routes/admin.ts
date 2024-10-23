@@ -1,4 +1,4 @@
-import { formCreateRequest, FormCreateRequestType } from '../models/formCreateRequest';
+import { postFormVersionRequest, PostFormVersionRequestType } from '../models/postFormVersionRequest';
 import { createFormVersion } from './admin/createFormVersion';
 import { testHandler } from './admin/testHandler'
 import { FastifyPluginAsync } from "fastify";
@@ -6,9 +6,9 @@ import { FastifyPluginAsync } from "fastify";
 const adminRoutes: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
   fastify.get("/test", testHandler); // Test route
 
-  fastify.post<{ Body: FormCreateRequestType }>(
+  fastify.post<{ Body: PostFormVersionRequestType }>(
     "/createForm", 
-    { schema: { body: formCreateRequest } }, 
+    { schema: { body: postFormVersionRequest } }, 
     (request) => createFormVersion(request.body)
   ); // Create a Form Version
 };

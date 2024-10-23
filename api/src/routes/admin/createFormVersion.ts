@@ -1,10 +1,11 @@
-import { FormCreateRequestType } from "../../models/formCreateRequest";
+
+import { PostFormVersionRequestType } from "../../models/postFormVersionRequest";
 import prisma from "../../services/prisma";
 
-export async function createFormVersion(data: FormCreateRequestType) {
+export async function createFormVersion(data: PostFormVersionRequestType) {
   console.log(`Form Create request from ${data.userEmail}`);
 
-  // In reality the userEmail/userId would come from the user token (not a user client provided field)
+  // TODO: The userEmail/userId would come from the user token / auth (not a user client provided field)
   const user = await prisma.user.findUnique({
     where: {
       email: data.userEmail,
@@ -33,15 +34,8 @@ export async function createFormVersion(data: FormCreateRequestType) {
   var formVersionId = data.formVersionId;
 
   if (formVersionId) {
-    // Update existing form version
-    const newFormVersion = await prisma.formVersion.update({
-      where: {
-        id: formVersionId,
-      },
-      data: {
-        content: data.content,
-      },
-    });
+    // Disallow updating existing form versions
+    throw { statusCode: 400, message: "Cannot modify an existing form version." };
   } else {
     // Create a new form version
     const newFormVersion = await prisma.formVersion.create({
@@ -52,6 +46,14 @@ export async function createFormVersion(data: FormCreateRequestType) {
     });
 
     formVersionId = newFormVersion.id;
+
+    // TODO: This could be simplified to one query
+    const updatedForm = await prisma.form.update({
+      where: { id: formId },
+      data: {
+        currentFormVersionId: formVersionId,
+      },
+    });
   }
 
   return formVersionId;
