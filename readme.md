@@ -22,8 +22,10 @@ rm csr.pem
 ```
 > NOTE: You will need to ensure the locally generated SSL is trusted by your browser.
 >
-> First generate the keys:
-> On a mac do this by adding the cert to your keychain and enabling the following option in chrome:
+> First generate the keys then add the cert to your locally trusted certificates.
+> On a mac you do this by adding the cert to your keychain.
+> 
+> Also enabling the following option in chrome will trust localhost explicitly:
 > ```chrome://flags/#allow-insecure-localhost```
 
 ## Running
