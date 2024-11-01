@@ -14,8 +14,6 @@ export async function createFormAttempt(data: PostFormAttemptRequestType) {
 
   var formAttemptId = data.formAttemptId;
 
-  // If existing attempt ID is provided update the existing attempt
-  // Otherwise create new
   if (formAttemptId) {
     try {
       await prisma.userFormAttempts.update({

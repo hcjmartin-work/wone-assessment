@@ -1,0 +1,105 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "steps": {
+      "type": "array",
+      "uniqueItems": true,
+      "minItems": 1,
+      "items": {
+        "required": [
+          "id",
+          "titleHtml",
+          "__typename"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "input": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "label": {
+                "type": "string"
+              },
+              "options": {
+                "type": "array",
+                "uniqueItems": true,
+                "minItems": 1,
+                "items": {
+                  "required": [
+                    "id",
+                    "label",
+                    "value",
+                    "__typename"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "label": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "value": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "__typename": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                }
+              },
+              "required": {
+                "type": "boolean"
+              },
+              "__typename": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "options",
+              "required",
+              "__typename"
+            ]
+          },
+          "response": {},
+          "titleHtml": {
+            "type": "string",
+            "minLength": 1
+          },
+          "__typename": {
+            "type": "string",
+            "minLength": 1
+          },
+          "subtitleHtml": {}
+        }
+      }
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "__typename": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "steps",
+    "version",
+    "__typename"
+  ]
+}

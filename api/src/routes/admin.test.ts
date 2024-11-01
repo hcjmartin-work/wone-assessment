@@ -3,9 +3,10 @@ import { FastifyInstance } from 'fastify'
 import { describe, it, after, mock, before } from 'node:test'
 import assert from 'assert'
 import * as app from '../app'
+import { Http2SecureServer } from 'http2'
 
 describe('/admin/ HTTP', () => {
-  let instance: FastifyInstance
+  let instance: FastifyInstance<Http2SecureServer>
 
   before(async () => {
     instance = await app.buildApp({ logger: false })
