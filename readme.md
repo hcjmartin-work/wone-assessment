@@ -20,6 +20,7 @@ openssl req -new -key key.pem -out csr.pem
 openssl x509 -req -days 9999 -in csr.pem -signkey key.pem -out cert.pem
 rm csr.pem 
 ```
+
 > NOTE: You will need to ensure the locally generated SSL is trusted by your browser.
 >
 > First generate the keys then add the cert to your locally trusted certificates.
